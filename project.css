@@ -1,0 +1,19 @@
+p {
+	color: navy;
+}
+
+p.info {
+	font-size: 10pt;
+}
+
+h1 {
+	color: rgb(231, 218, 38);
+	text-shadow: 1px 1px 2px navy;
+}
+
+h2,h3 {
+	font-family: cursive;
+	margin: 5px;
+	color: #3f3faf;
+	background: linear-gradient(0.25turn,white,#ffefaf)
+}
