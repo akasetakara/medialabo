@@ -18,10 +18,10 @@ let gakka = [
 
 console.log(campus.address);
 
-for (const room of campus.buildingD) {
+for (let room of campus.buildingD) {
 	console.log(room);
 }
 
-for (const department of gakka) {
+for (let department of gakka) {
 	console.log(department.name);
 }
