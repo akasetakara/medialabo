@@ -1,8 +1,6 @@
-
 // 課題3-2 のプログラムはこの関数の中に記述すること
 function print(data) {
   const shops = data.results.shop;
-
   for (let i = 0; i < shops.length; i++) {
     const shop = shops[i];
     console.log("店舗名：" + shop.name);
@@ -12,40 +10,71 @@ function print(data) {
     console.log("ジャンル：" + shop.genre.name);
     console.log("営業時間：" + shop.open);
     console.log("アクセス：" + shop.access);
-    console.log("最寄駅：" + shop.station_name); 
+    console.log("最寄駅：" + shop.station_name);
     console.log("-------------");
   }
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
+  const shops = data.results.shop;
+  const resultArea = document.createElement('div');
+  document.body.appendChild(resultArea);
+  resultArea.innerHTML = '';
 
+  for (let i = 0; i < shops.length; i++) {
+    const shop = shops[i];
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <h3>店舗名：${shop.name}</h3>
+      <p>住所：${shop.address}</p>
+      <p>予算：${shop.budget.name}</p>
+      <p>キャッチコピー：${shop.catch}</p>
+      <p>ジャンル：${shop.genre.name}</p>
+      <p>営業時間：${shop.open}</p>
+      <p>アクセス：${shop.access}</p>
+      <p>最寄駅：${shop.station_name}</p>
+      <hr>
+    `;
+    resultArea.appendChild(div);
+  }
 }
 
-// 課題6-1 のイベントハンドラ登録処理は以下に記述
-
-
-
+// 課題6-1 のイベントハンドラ登録処理
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('#search').addEventListener('click', sendRequest);
+});
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
+  const genreCode = document.querySelector('#genre').value;
+  console.log("検索キー: ", genreCode);
 
+  const filteredData = {
+    results: {
+      shop: data.results.shop.filter(shop => shop.genre.code === genreCode)
+    }
+  };
+  showResult(filteredData);
+  finish();
 }
 
-// 課題6-1: 通信が成功した時の処理は以下に記述
+// 課題6-1: 通信が成功した時の処理
 function showResult(resp) {
-
+  print(resp);
+  printDom(resp);
 }
 
 // 課題6-1: 通信エラーが発生した時の処理
 function showError(err) {
-    console.log(err);
+  console.log(err);
 }
 
 // 課題6-1: 通信の最後にいつも実行する処理
 function finish() {
-    console.log('Ajax 通信が終わりました');
+  console.log('Ajax 通信が終わりました');
 }
+
 
 ////////////////////////////////////////
 // 以下はグルメのデータサンプル

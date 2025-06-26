@@ -1,3 +1,11 @@
+/* ページ全体の背景 */
+body {
+	background: linear-gradient(to bottom right, #e0f7fa, #fff9c4);
+	font-family: sans-serif;
+	margin: 0;
+	padding: 20px;
+}
+
 /* 全ての段落に適用 */
 p {
 	color: navy;

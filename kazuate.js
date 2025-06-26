@@ -1,31 +1,34 @@
-
 let kotae = Math.floor(Math.random() * 10) + 1;
 console.log('答え（デバッグ用）: ' + kotae);
 
 let kaisu = 0;
 
-function hantei() {
-  let yoso = 4;
+document.querySelector('#print').addEventListener('click', hantei);
 
+function hantei() {
+  
+  let input = document.querySelector('#yoso');
+  let yoso = parseInt(input.value);
+
+  
   kaisu++;
-  console.log(kaisu + '回目の予想: ' + yoso);
+  document.querySelector('#kaisu').textContent = kaisu;
+  document.querySelector('#answer').textContent = yoso;
+
+  
+  let result = document.querySelector('#result');
 
   if (kaisu >= 4) {
-    console.log('答えは ' + kotae + ' でした．すでにゲームは終わっています');
+    result.textContent = '答えは ' + kotae + ' でした．すでにゲームは終わっています';
   } else if (yoso === kotae) {
-    console.log('正解です．おめでとう!');
+    result.textContent = '正解です．おめでとう!';
   } else {
     if (kaisu === 3) {
-      console.log('まちがい．残念でした答えは ' + kotae + ' です．');
+      result.textContent = 'まちがい．残念でした答えは ' + kotae + ' です．';
     } else if (yoso < kotae) {
-      console.log('まちがい．答えはもっと大きいですよ');
+      result.textContent = 'まちがい．答えはもっと大きいですよ';
     } else {
-      console.log('まちがい．答えはもっと小さいですよ');
+      result.textContent = 'まちがい．答えはもっと小さいですよ';
     }
   }
 }
-
-hantei();
-hantei();
-hantei();
-hantei();
